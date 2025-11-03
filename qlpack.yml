@@ -1,0 +1,3 @@
+name: measurement-data
+dependencies:
+  codeql/cpp-all: '*'
