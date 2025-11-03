@@ -1,11 +1,10 @@
 /**
  * @id def-use
- * @kind problem
- * @problem.severity warning
+ * @kind table
  */
 
 /*
- * def-use.ql, 31 Oct 25
+ * def-use.ql,  3 Nov 25
  */
 
 import cpp
@@ -16,5 +15,5 @@ where
   definition(v, def) and
   definitionUsePair(v, def, use)
 select def, ""+v.getName()+
-		","+v.getLocation().getStartLine()+","+use.getLocation().getStartLine()+","+def.getFile()
+		v.getLocation().getStartLine(), v.getLocation().getEndLine(), v.getFunction(), v.getFile()
 

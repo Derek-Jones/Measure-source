@@ -1,16 +1,15 @@
 /**
  * @id compound-stmt
- * @kind problem
- * @problem.severity warning
+ * @kind table
  */
 
 /*
- * blk-stmts.ql, 31 Oct 25
+ * blk-stmts.ql,  3 Nov 25
  */
 
 import cpp
 
 from BlockStmt bs
-select "", ""+bs.getParent()+","+bs.getNumStmt()+
-		","+bs.getLocation().getStartLine()+","+bs.getLocation().getEndLine()+","+bs.getEnclosingFunction()+","+bs.getFile()
+select bs.getParent(), bs.getNumStmt(),
+		bs.getLocation().getStartLine(), bs.getLocation().getEndLine(), bs.getFunction(), bs.getFile()
 

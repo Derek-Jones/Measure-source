@@ -1,11 +1,10 @@
 /**
  * @id unused-local
- * @kind problem
- * @problem.severity warning
+ * @kind table
  */
 
 /*
- * unused-local.ql, 31 Oct 25
+ * unused-local.ql,  3 Nov 25
  */
 
 import cpp
@@ -14,6 +13,6 @@ from LocalScopeVariable lv
 where
   not lv instanceof Parameter and
   not exists(lv.getAnAccess())
-select "", ""+lv.getName()+
-		","+lv.getLocation().getStartLine()+","+lv.getLocation().getEndLine()+","+lv.getEnclosingFunction()+","+lv.getFile()
+select lv.getName(),
+		lv.getLocation().getStartLine(), lv.getLocation().getEndLine(), lv.getFunction(), lv.getFile()
 
