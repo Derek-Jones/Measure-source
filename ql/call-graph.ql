@@ -13,3 +13,6 @@ from FunctionCall call
 select call.getTarget(), call.getNumberOfArguments(),
 		call.getLocation().getStartLine(), call.getLocation().getEndLine(), call.getFunction(), call.getFile()
 
+/*
+ * called,arguments,startline,endline,function,file
+ */
