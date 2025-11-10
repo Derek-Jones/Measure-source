@@ -4,7 +4,7 @@
  */
 
 /*
- * unused-param.ql,  4 Nov 25
+ * unused-param.ql, 10 Nov 25
  *
  * Mostly copied from codeql examples
  */
@@ -34,5 +34,10 @@ where
   not f.isOverriddenMethod() and
   not is_abstract(f)
 select v.getId(),
+		max(int n | v.getId() = f.getParameter(n).getId() | n), // Parameter number
+		f.minParameters(), f.maxParameters(), f.descriptiveString(),
 		v.getScope().getLocation().getStartLine(), v.getScope().getLocation().getEndLine(), v.getScope(), v.getScope().getLocation().getFile()
 
+/*
+ * pname,pnum,minp,maxp,fname,pstartline,pendline,scope,filename
+ */
