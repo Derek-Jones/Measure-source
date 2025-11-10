@@ -29,6 +29,10 @@ select func.getName(),
 		func.getName(), func.getScope().getLocation().getFile()
 
 /*
+name,minargs,maxargs,nlines,nloc,ncomments,ndocstr,nstmts,kwarg,vararg,generator,initmethod,lambda,method,procesure,funcstart,fdefend,funcend,name,file
+*/
+
+/*
 		count(int dummy | dummy = 1 and func.neverReturns() | dummy),
 		count(int dummy | dummy = 1 and func.isOverridingMethod() | dummy),
 		count(int dummy | dummy = 1 and func.isOverridingMethod() | dummy)
