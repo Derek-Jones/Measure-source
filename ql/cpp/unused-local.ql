@@ -16,5 +16,5 @@ where
 	not lv.getFunction().isCompilerGenerated() and
 	not lv.getFile() instanceof HeaderFile
 select lv.getName(),
-		lv.getLocation().getStartLine(), lv.getLocation().getEndLine(), lv.getFunction(), lv.getFile()
+		lv.getLocation().getStartLine(), lv.getLocation().getEndLine(), lv.getFunction(), lv.getFile().getRelativePath()
 

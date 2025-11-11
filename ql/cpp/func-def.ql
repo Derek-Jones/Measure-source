@@ -40,7 +40,7 @@ select func.getName(),
 		count(int dummy | dummy = 1 and func.isSpecialization() | dummy),
 		count(int dummy | dummy = 1 and func.isVarargs() | dummy),
 		count(int dummy | dummy = 1 and func.isVirtual() | dummy),
-		func.getLocation().getStartLine(), func.getLocation().getEndLine(), func.getName(), func.getFile()
+		func.getLocation().getStartLine(), func.getLocation().getEndLine(), func.getName(), func.getFile().getRelativePath()
 
 /*
  * fname,ftype,parameters,lines,LOC,comments,curlstart,curlend,nothrow,sideeffect,varargs,startline,endline,function,file
