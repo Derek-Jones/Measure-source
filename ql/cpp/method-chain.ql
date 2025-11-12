@@ -15,9 +15,11 @@ int mchain_len(Expr mc) {
    exists(Expr e | e=mc.(Call).getQualifier()) and
       result=mchain_len(mc.(Call).getQualifier())+
 				count(int dummy | dummy = 1 and not mc.(Call).isCompilerGenerated() and
-								not mc.(Call).hasImplicitConversion() and
+								mc.(Call).getTarget().toString() != "operator->" and
 								not mc instanceof ConstructorCall | dummy)
 /*
+								not mc.(Call).mayBeFromImplicitlyDeclaredFunction() and
+								not mc.(Call).hasImplicitConversion() and
    exists(Expr e | e=mc.getChild(-1)) and
    result=mchain_len(mc.getChild(-1))+1
 */
