@@ -25,6 +25,16 @@ select f.getShortName()+"."+f.getExtensions(),
 		f.getLocation().getStartLine(), f.getLocation().getEndLine(), f.getRelativePath()
 
 /*
+Count the number of dependencies a C/C++ source file has on external libraries.
+
+import ExternalDependencies
+
+from File file, int num, string encodedDependency
+where encodedDependencies(file, encodedDependency, num)
+select encodedDependency, num order by num desc
+*/
+
+/*
  * fname,nclasses,ntoplevfuncs,nusertypes,nlines,nLOC,ncomments,nincludes,asC,asCpp,startline,endline,file
  */
 
