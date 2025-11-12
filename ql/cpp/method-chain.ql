@@ -30,28 +30,7 @@ string mchain_seq(Expr mc) {
       result = "" or
    exists(Expr e | e=mc.(Call).getQualifier()) and
       result=mc.(Call).getTarget()+"()"+mchain_seq(mc.(Call).getQualifier())
-/*
-   exists(Expr e | e=mc.getChild(-1)) and
-   result=mc.getTarget()+mchain_len(mc.getChild(-1))
-*/
 }
-
-
-/* Follow the receiver/base rather than the last argument. */
-/*
-Expr receiverOf(Call c) {
-  result = c.getCalleeExpr().(Expr).getQualifier() // adjust per your target cases
-  or
-  result = c.getCalleeExpr().(MemberExpr).getBase()
-}
-
-int recv_chain_len(Expr e) {
-  result =
-    if e instanceof Call and exists(Call c | c = e and exists(Expr r | r = receiverOf(c)))
-    then recv_chain_len(receiverOf(e as Call)) + 1
-    else 0
-}
-*/
 
 
 from Call mc

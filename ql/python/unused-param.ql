@@ -4,7 +4,7 @@
  */
 
 /*
- * unused-param.ql, 10 Nov 25
+ * unused-param.ql, 12 Nov 25
  *
  * Mostly copied from codeql examples
  */
@@ -36,7 +36,7 @@ where
 select v.getId(),
 		max(int n | v.getId() = f.getParameter(n).getId() | n), // Parameter number
 		f.minParameters(), f.maxParameters(), f.descriptiveString(),
-		v.getScope().getLocation().getStartLine(), v.getScope().getLocation().getEndLine(), v.getScope(), v.getScope().getLocation().getFile()
+		v.getScope().getLocation().getStartLine(), v.getScope().getLocation().getEndLine(), v.getScope(), v.getScope().getLocation().getFile().getRelativePath()
 
 /*
  * pname,pnum,minp,maxp,fname,pstartline,pendline,scope,filename

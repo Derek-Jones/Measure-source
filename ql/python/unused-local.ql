@@ -4,7 +4,7 @@
  */
 
 /*
- * unused-local.ql,  4 Nov 25
+ * unused-local.ql, 12 Nov 25
  *
  * Mostly copied from codeql examples
  */
@@ -42,6 +42,6 @@ where
   // If unused is part of a tuple, count it as unused if all elements of that tuple are unused.
   forall(Name el | el = unused.getParentNode().(Tuple).getAnElt() | unused_local(el, _))
 select v.getId(),
-		v.getScope().getLocation().getStartLine(), v.getScope().getLocation().getEndLine(), v.getScope(), v.getScope().getLocation().getFile()
+		v.getScope().getLocation().getStartLine(), v.getScope().getLocation().getEndLine(), v.getScope(), v.getScope().getLocation().getFile().getRelativePath()
 
 

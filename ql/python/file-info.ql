@@ -4,7 +4,7 @@
  */
 
 /*
- * file-info.ql,  7 Nov 25
+ * file-info.ql, 12 Nov 25
  */
 
 import python
@@ -21,5 +21,5 @@ select m.getName(),
 		count(int dummy | dummy = 1 and m.isPackage() | dummy),
 		count(int dummy | dummy = 1 and m.isPackageInit() | dummy),
 		m.getLocation().getStartLine(), m.getLocation().getEndLine(), m.getLastStatement().getLocation().getEndLine(),
-		"none", m.getFile()
+		"none", m.getFile().getRelativePath()
 

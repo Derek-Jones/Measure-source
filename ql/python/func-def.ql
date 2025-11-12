@@ -4,7 +4,7 @@
  */
 
 /*
- * func-def.ql,  5 Nov 25
+ * func-def.ql, 12 Nov 25
  */
 
 import python
@@ -26,7 +26,7 @@ select func.getName(),
 		count(int dummy | dummy = 1 and func.isProcedure() | dummy),
 		func.getDefinition().getLocation().getStartLine(), func.getDefinition().getLocation().getEndLine(),
  		func.getLastStatement().getLocation().getEndLine(),
-		func.getName(), func.getScope().getLocation().getFile()
+		func.getName(), func.getScope().getLocation().getFile().getRelativePath()
 
 /*
 name,minargs,maxargs,nlines,nloc,ncomments,ndocstr,nstmts,kwarg,vararg,generator,initmethod,lambda,method,procesure,funcstart,fdefend,funcend,name,file

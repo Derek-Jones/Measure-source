@@ -4,7 +4,7 @@
  */
 
 /*
- * def-use.ql,  5 Nov 25
+ * def-use.ql, 12 Nov 25
  */
 
 import python
@@ -18,5 +18,5 @@ from NiceLocationExpr use, Definition defn, string kind
 where
   defn = definitionOf(use, kind)
 select use, defn, kind,
-		use.getLocation().getStartLine(), use.getLocation().getEndLine(), use.getScope(), use.getLocation().getFile()
+		use.getLocation().getStartLine(), use.getLocation().getEndLine(), use.getScope(), use.getLocation().getFile().getRelativePath()
 
