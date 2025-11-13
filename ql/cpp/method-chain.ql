@@ -4,7 +4,7 @@
  */
 
 /*
- * method-chain.ql, 12 Nov 25
+ * method-chain.ql, 13 Nov 25
  */
 
 import cpp
@@ -15,7 +15,7 @@ int mchain_len(Expr mc) {
    exists(Expr e | e=mc.(Call).getQualifier()) and
       result=mchain_len(mc.(Call).getQualifier())+
 				count(int dummy | dummy = 1 and not mc.(Call).isCompilerGenerated() and
-								mc.(Call).getTarget().toString() != "operator->" and
+								not mc.(Call).getTarget().toString().regexpMatch("^operator[ =+*(\\[\\-].*") and
 								not mc instanceof ConstructorCall | dummy)
 /*
 								not mc.(Call).mayBeFromImplicitlyDeclaredFunction() and

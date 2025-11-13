@@ -4,7 +4,7 @@
  */
 
 /*
- * func-def.ql, 11 Nov 25
+ * func-def.ql, 12 Nov 25
  */
 
 import cpp
@@ -19,6 +19,7 @@ select func.getName(),
 		func.getMetrics().getNumberOfLines(),
 		func.getMetrics().getNumberOfLinesOfCode(),
 		func.getMetrics().getNumberOfLinesOfComments(),
+		count(Stmt s | s.getEnclosingFunction() = func),  // Number of statements per function
 		func.getBlock().getLocation().getStartLine(), func.getBlock().getLocation().getEndLine(),
 		count(int dummy | dummy = 1 and func.hasCLinkage() | dummy),
 		count(int dummy | dummy = 1 and func.hasExceptionSpecification() | dummy),
@@ -31,6 +32,7 @@ select func.getName(),
 		count(int dummy | dummy = 1 and func.isExplicit() | dummy),
 		count(int dummy | dummy = 1 and func.isFinal() | dummy),
 		count(int dummy | dummy = 1 and func.isInline() | dummy),
+		count(int dummy | dummy = 1 and func.isMember() | dummy),
 		count(int dummy | dummy = 1 and func.isNaked() | dummy),
 		count(int dummy | dummy = 1 and func.isNoExcept() | dummy),
 		count(int dummy | dummy = 1 and func.isNoThrow() | dummy),
@@ -38,6 +40,7 @@ select func.getName(),
 		count(int dummy | dummy = 1 and func.isPrototyped() | dummy),
 		count(int dummy | dummy = 1 and func.isSideEffectFree() | dummy),
 		count(int dummy | dummy = 1 and func.isSpecialization() | dummy),
+		count(int dummy | dummy = 1 and func.isStatic() | dummy),
 		count(int dummy | dummy = 1 and func.isVarargs() | dummy),
 		count(int dummy | dummy = 1 and func.isVirtual() | dummy),
 		func.getLocation().getStartLine(), func.getLocation().getEndLine(), func.getName(), func.getFile().getRelativePath()
