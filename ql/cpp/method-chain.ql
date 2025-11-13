@@ -18,10 +18,8 @@ int mchain_len(Expr mc) {
 								not mc.(Call).getTarget().toString().regexpMatch("^operator[ =+*(\\[\\-].*") and
 								not mc instanceof ConstructorCall | dummy)
 /*
-								not mc.(Call).mayBeFromImplicitlyDeclaredFunction() and
-								not mc.(Call).hasImplicitConversion() and
-   exists(Expr e | e=mc.getChild(-1)) and
-   result=mchain_len(mc.getChild(-1))+1
+			not mc.(Call).mayBeFromImplicitlyDeclaredFunction() and
+			not mc.(Call).hasImplicitConversion() and
 */
 }
 
@@ -41,4 +39,8 @@ where
 select mc.getTarget(), mchain_len(mc), mchain_seq(mc),
 		mc.getParent(), mc.getLocation().getStartLine(), mc.getLocation().getEndLine(),
 		mc.getEnclosingFunction(), mc.getFile().getRelativePath()
+
+/*
+target,chain_len,chain_names,parent,startline,endline,enclosefunc,file
+ */
 

@@ -4,7 +4,7 @@
  */
 
 /*
- * unused-param.ql, 11 Nov 25
+ * unused-param.ql, 13 Nov 25
  */
 
 import cpp
@@ -24,4 +24,9 @@ select p.getName(),
 		max(int n | p.getName() = p.getFunction().getParameter(n).getName() | n), // Parameter number
 		p.getFunction().getNumberOfParameters(),
 		p.getLocation().getStartLine(), p.getLocation().getEndLine(), p.getFunction(), p.getFile().getRelativePath()
+
+/*
+pname,pnum,numparams,startline,endline,enclosefunc,filepath
+ */
+
 

@@ -27,6 +27,6 @@ select def, v.getName(),
 		v.getLocation().getStartLine(), v.getLocation().getEndLine(), v.getFunction(), v.getFile().getRelativePath()
 
 /*
-def,vname,defline,useline,vscopestart,vscopeend,isconst,isconstinit,ismember,istoplevel,isvolatile,vstartline,vendline,vfunc,vfile
+def,vname,defline,useline,vscopestart,vscopeend,const,constinit,member,toplevel,volatile,vstartline,vendline,vfunc,vfile
  */
 

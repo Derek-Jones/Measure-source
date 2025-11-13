@@ -4,7 +4,7 @@
  */
 
 /*
- * unused-local.ql, 11 Nov 25
+ * unused-local.ql, 13 Nov 25
  */
 
 import cpp
@@ -17,4 +17,9 @@ where
 	not lv.getFile() instanceof HeaderFile
 select lv.getName(),
 		lv.getLocation().getStartLine(), lv.getLocation().getEndLine(), lv.getFunction(), lv.getFile().getRelativePath()
+
+/*
+vname,startline,endline,enclosefunction,filepath
+ */
+
 

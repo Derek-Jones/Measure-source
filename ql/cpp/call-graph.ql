@@ -4,7 +4,7 @@
  */
 
 /*
- * call-graph.ql, 11 Nov 25
+ * call-graph.ql, 13 Nov 25
  */
 
 import cpp
@@ -21,5 +21,5 @@ select call.getTarget(), call.getNumberOfArguments(), call.getNumberOfTemplateAr
 		call.getLocation().getStartLine(), call.getLocation().getEndLine(), call.getEnclosingFunction(), call.getFile().getRelativePath()
 
 /*
- * called,arguments,startline,endline,function,file
+target,arguments,targs,enclosefunc,targlist,foundbyadl,virtual,startline,endline,enclosefunc,file
  */

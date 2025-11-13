@@ -4,7 +4,7 @@
  */
 
 /*
- * class-info.ql, 11 Nov 25
+ * class-info.ql, 13 Nov 25
  */
 
 import cpp
@@ -14,18 +14,20 @@ where
 	not C.isCompilerGenerated() and
         not C.getFile() instanceof HeaderFile
 select C.getName(),
-		C.getType(),
-		C.getMetrics().getNumberOfParameters(),
 		C.getMetrics().getNumberOfLines(),
 		C.getMetrics().getNumberOfLinesOfCode(),
 		C.getMetrics().getNumberOfLinesOfComments(),
 		C.getLocation().getStartLine(), C.getLocation().getEndLine(),
-		count(int dummy | dummy = 1 and func.hasCLinkage() | dummy),
 		count(int dummy | dummy = 1 and func.hasExceptionSpecification() | dummy),
 		count(int dummy | dummy = 1 and func.isOverride() | dummy),
 		count(int dummy | dummy = 1 and func.isSpecialization() | dummy),
-		count(int dummy | dummy = 1 and func.isVarargs() | dummy),
 		C.getLocation().getStartLine(), C.getLocation().getEndLine(), C.getName(), C.getFile().getRelativePath()
+
+
+/*
+name
+ */
+
 
 /*
 The number of lines of code in a class.

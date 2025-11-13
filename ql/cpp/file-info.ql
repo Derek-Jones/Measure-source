@@ -1,10 +1,10 @@
 /**
- * @id func-definition
+ * @id file-info
  * @kind table
  */
 
 /*
- * file-info.ql, 12 Nov 25
+ * file-info.ql, 13 Nov 25
  */
 
 import cpp
@@ -23,6 +23,11 @@ select f.getShortName()+"."+f.getExtensions(),
 		count(int dummy | dummy = 1 and f.compiledAsC() | dummy),
 		count(int dummy | dummy = 1 and f.compiledAsCpp() | dummy),
 		f.getLocation().getStartLine(), f.getLocation().getEndLine(), f.getRelativePath()
+
+
+/*
+fname,numclasses,numtoplevelfuncs,numusertypes,numlines,numLOC,numcomments,compiledC,compiledCpp,startline,endline,fpath
+ */
 
 /*
 Count the number of dependencies a C/C++ source file has on external libraries.
