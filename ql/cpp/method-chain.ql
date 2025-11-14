@@ -4,7 +4,7 @@
  */
 
 /*
- * method-chain.ql, 13 Nov 25
+ * method-chain.ql, 14 Nov 25
  */
 
 import cpp
@@ -36,11 +36,9 @@ where
         not mc.getFile() instanceof HeaderFile and
 	not mc.isCompilerGenerated() and
 	mchain_len(mc) > 0
-select mc.getTarget(), mchain_len(mc), mchain_seq(mc),
-		mc.getParent(), mc.getLocation().getStartLine(), mc.getLocation().getEndLine(),
-		mc.getEnclosingFunction(), mc.getFile().getRelativePath()
+select mc.getTarget() as mname, mchain_len(mc) as chainlen, mchain_seq(mc) as chainnames,
+		mc.getParent() as parent,
+		mc.getLocation().getStartLine() as startline, mc.getLocation().getEndLine() as endline,
+		mc.getEnclosingFunction() as enclosingfunc, mc.getFile().getRelativePath() as filepath
 
-/*
-target,chain_len,chain_names,parent,startline,endline,enclosefunc,file
- */
 

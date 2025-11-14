@@ -4,7 +4,7 @@
  */
 
 /*
- * def-use.ql, 11 Nov 25
+ * def-use.ql, 14 Nov 25
  */
 
 import cpp
@@ -16,17 +16,14 @@ where
 	definitionUsePair(v, def, use) and
         not v.getFile() instanceof HeaderFile and
 	not v.getFunction().isCompilerGenerated()
-select def, v.getName(),
-		def.getLocation().getStartLine(), use.getLocation().getStartLine(),
-		v.getParentScope().getLocation().getStartLine(), v.getParentScope().getLocation().getEndLine(),
-		count(int dummy | dummy = 1 and v.isConst() | dummy),
-		count(int dummy | dummy = 1 and v.isConstinit() | dummy),
-		count(int dummy | dummy = 1 and v.isMember() | dummy),
-		count(int dummy | dummy = 1 and v.isTopLevel() | dummy),
-		count(int dummy | dummy = 1 and v.isVolatile() | dummy),
-		v.getLocation().getStartLine(), v.getLocation().getEndLine(), v.getFunction(), v.getFile().getRelativePath()
+select def, v.getName() as vname,
+		def.getLocation().getStartLine() dstartline, use.getLocation().getStartLine() dendline,
+		v.getParentScope().getLocation().getStartLine() as vstartline, v.getParentScope().getLocation().getEndLine() as vendline,
+		count(int dummy | dummy = 1 and v.isConst() | dummy) as const,
+		count(int dummy | dummy = 1 and v.isConstinit() | dummy) as constinit,
+		count(int dummy | dummy = 1 and v.isMember() | dummy) as member,
+		count(int dummy | dummy = 1 and v.isTopLevel() | dummy) as toplevel,
+		count(int dummy | dummy = 1 and v.isVolatile() | dummy) as volatile,
+		v.getFunction() as enclosingfunc, v.getFile().getRelativePath() as filepath
 
-/*
-def,vname,defline,useline,vscopestart,vscopeend,const,constinit,member,toplevel,volatile,vstartline,vendline,vfunc,vfile
- */
 

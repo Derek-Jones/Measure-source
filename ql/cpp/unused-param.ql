@@ -4,7 +4,7 @@
  */
 
 /*
- * unused-param.ql, 13 Nov 25
+ * unused-param.ql, 14 Nov 25
  */
 
 import cpp
@@ -20,13 +20,10 @@ where p.isNamed() and
 	not exists(p.getAnAccess()) and
 	not p.getFunction().isCompilerGenerated() and
 	not p.getFile() instanceof HeaderFile
-select p.getName(),
-		max(int n | p.getName() = p.getFunction().getParameter(n).getName() | n), // Parameter number
-		p.getFunction().getNumberOfParameters(),
-		p.getLocation().getStartLine(), p.getLocation().getEndLine(), p.getFunction(), p.getFile().getRelativePath()
-
-/*
-pname,pnum,numparams,startline,endline,enclosefunc,filepath
- */
+select p.getName() as pname,
+		max(int n | p.getName() = p.getFunction().getParameter(n).getName() | n) as pnum, // Parameter number
+		p.getFunction().getNumberOfParameters() as numparam,
+		p.getLocation().getStartLine() as startline, p.getLocation().getEndLine() as endline,
+		p.getFunction() as enclosingfunc, p.getFile().getRelativePath() as filepath
 
 

@@ -4,17 +4,14 @@
  */
 
 /*
- * blk-stmts.ql, 13 Nov 25
+ * blk-stmts.ql, 14 Nov 25
  */
 
 import cpp
 
 from BlockStmt bs
-select bs.getParent(), bs.getNumStmt(),
-		bs.getLocation().getStartLine(), bs.getLastStmt().getLocation().getEndLine(),
-		bs.getEnclosingFunction(), bs.getFile().getRelativePath()
+select bs.getParent() as parent, bs.getNumStmt() as nstmt,
+		bs.getLocation().getStartLine() as startline, bs.getLastStmt().getLocation().getEndLine() as endline,
+		bs.getEnclosingFunction() as enclosingfunc, bs.getFile().getRelativePath() as filepath
 
-/*
-parent,numstmts,startline,endline,enclosefunc,file
- */
 

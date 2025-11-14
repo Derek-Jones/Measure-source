@@ -4,7 +4,7 @@
  */
 
 /*
- * unused-local.ql, 13 Nov 25
+ * unused-local.ql, 14 Nov 25
  */
 
 import cpp
@@ -15,11 +15,8 @@ where
   	not exists(lv.getAnAccess()) and
 	not lv.getFunction().isCompilerGenerated() and
 	not lv.getFile() instanceof HeaderFile
-select lv.getName(),
-		lv.getLocation().getStartLine(), lv.getLocation().getEndLine(), lv.getFunction(), lv.getFile().getRelativePath()
-
-/*
-vname,startline,endline,enclosefunction,filepath
- */
+select lv.getName() as vname,
+		lv.getLocation().getStartLine() as startline, lv.getLocation().getEndLine() as endline,
+		lv.getFunction() as enclosingfunc, lv.getFile().getRelativePath() as filepath
 
 

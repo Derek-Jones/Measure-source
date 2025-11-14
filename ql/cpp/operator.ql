@@ -4,7 +4,7 @@
  */
 
 /*
- * operator.ql, 13 Nov 25
+ * operator.ql, 14 Nov 25
  */
 
 import cpp
@@ -22,6 +22,6 @@ select op.getOperator() as operator,
 		count(int dummy | dummy = 1 and op.hasLValueToRValueConversion() | dummy) as lv_rv_conv,
 		count(int dummy | dummy = 1 and op.isConstant() | dummy) as constant,
 		count(int dummy | dummy = 1 and op.getFile().compiledAsCpp() | dummy) as cpp,
-		op.getEnclosingFunction() as enclosefunc, op.getFile().getRelativePath() as filepath
+		op.getEnclosingFunction() as enclosingfunc, op.getFile().getRelativePath() as filepath
 
 

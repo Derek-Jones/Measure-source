@@ -4,7 +4,7 @@
  */
 
 /*
- * class-info.ql, 13 Nov 25
+ * class-info.ql, 14 Nov 25
  */
 
 import cpp
@@ -13,20 +13,16 @@ from Class C
 where
 	not C.isCompilerGenerated() and
         not C.getFile() instanceof HeaderFile
-select C.getName(),
-		C.getMetrics().getNumberOfLines(),
-		C.getMetrics().getNumberOfLinesOfCode(),
-		C.getMetrics().getNumberOfLinesOfComments(),
-		C.getLocation().getStartLine(), C.getLocation().getEndLine(),
-		count(int dummy | dummy = 1 and func.hasExceptionSpecification() | dummy),
-		count(int dummy | dummy = 1 and func.isOverride() | dummy),
-		count(int dummy | dummy = 1 and func.isSpecialization() | dummy),
-		C.getLocation().getStartLine(), C.getLocation().getEndLine(), C.getName(), C.getFile().getRelativePath()
+select C.getName() as cname,
+		C.getMetrics().getNumberOfLines() as nlines,
+		C.getMetrics().getNumberOfLinesOfCode() as LOC,
+		C.getMetrics().getNumberOfLinesOfComments() as ncomments,
+		count(int dummy | dummy = 1 and func.hasExceptionSpecification() | dummy) as exceptspec,
+		count(int dummy | dummy = 1 and func.isOverride() | dummy) as override,
+		count(int dummy | dummy = 1 and func.isSpecialization() | dummy) as specialization,
+		C.getLocation().getStartLine() as startline, C.getLocation().getEndLine() as endline,
+		C.getFile().getRelativePath() as filepath
 
-
-/*
-name
- */
 
 
 /*
