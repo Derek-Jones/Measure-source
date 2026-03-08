@@ -4,7 +4,7 @@
  */
 
 /*
- * func-def.ql, 13 Nov 25
+ * func-def.ql,  6 Mar 26
  */
 
 import cpp
@@ -44,6 +44,6 @@ select func.getName() as fname,
 		count(int dummy | dummy = 1 and func.isVarargs() | dummy) as varargs,
 		count(int dummy | dummy = 1 and func.isVirtual() | dummy) as virtual,
 		func.getLocation().getStartLine() as startline, func.getLocation().getEndLine() as endline,
-		func.getName() as funcname, func.getFile().getRelativePath() as filepath
+		func.getFile().getRelativePath() as filepath
 
 
