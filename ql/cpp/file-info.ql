@@ -4,7 +4,7 @@
  */
 
 /*
- * file-info.ql, 13 Nov 25
+ * file-info.ql, 21 Jul 26 Nov 25
  */
 
 import cpp
@@ -12,17 +12,18 @@ import cpp
 from File f
 where
         not f.getFile() instanceof HeaderFile
-select f.getShortName()+"."+f.getExtensions(),
-		f.getMetrics().getNumberOfClasses(),
-		f.getMetrics().getNumberOfTopLevelFunctions(),
-		f.getMetrics().getNumberOfUserTypes(),
-		f.getMetrics().getNumberOfLines(),
-		f.getMetrics().getNumberOfLinesOfCode(),
-		f.getMetrics().getNumberOfLinesOfComments(),
-		count(f.getAnIncludedFile()),
-		count(int dummy | dummy = 1 and f.compiledAsC() | dummy),
-		count(int dummy | dummy = 1 and f.compiledAsCpp() | dummy),
-		f.getLocation().getStartLine(), f.getLocation().getEndLine(), f.getRelativePath()
+select f.getShortName()+"."+f.getExtensions() as fname,
+		f.getMetrics().getNumberOfClasses() as nclasses,
+		f.getMetrics().getNumberOfTopLevelFunctions() as ntopfuncs,
+		f.getMetrics().getNumberOfUserTypes() as numusrtypes,
+		f.getMetrics().getNumberOfLines() as nlines,
+		f.getMetrics().getNumberOfLinesOfCode() as nLOC,
+		f.getMetrics().getNumberOfLinesOfComments() as ncomments,
+		count(f.getAnIncludedFile()) as ninclfiles,
+		count(int dummy | dummy = 1 and f.compiledAsC() | dummy) as isC,
+		count(int dummy | dummy = 1 and f.compiledAsCpp() | dummy) as isCpp,
+		f.getLocation().getStartLine() as startline, f.getLocation().getEndLine() as endline,
+    f.getRelativePath() as filepath
 
 
 /*
