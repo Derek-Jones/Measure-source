@@ -4,7 +4,7 @@
  */
 
 /*
- * func-def.ql, 21 Jul 26
+ * func-def.ql, 28 Jul 26
  */
 
 import cpp
@@ -46,6 +46,9 @@ select func.getName() as fname,
 		count(BreakStmt b | b.getEnclosingFunction() = func) as nbreak,  // Number of break-statements per function
 		count(ContinueStmt c | c.getEnclosingFunction() = func) as ncontinue,  // Number of continue-statements per function
 		count(ReturnStmt r | r.getEnclosingFunction() = func) as nreturn,  // Number of return-statements per function
+		count(GotoStmt g | g.getEnclosingFunction() = func) as ngoto,  // Number of goto-statements per function
+		count(EmptyStmt e | e.getEnclosingFunction() = func) as nempty,  // Number of empty-statements per function
+		count(DeclStmt ds | ds.getEnclosingFunction() = func) as ndecl,  // Number of declarations variables
 		count(LocalVariable lv | lv.getFunction() = func) as nloclvar,  // Number of local variables
 		//func.getBlock().getLocation().getStartLine() as curlstart, func.getBlock().getLocation().getEndLine() as curlend,
 		count(int dummy | dummy = 1 and func.hasCLinkage() | dummy) as clinkage,

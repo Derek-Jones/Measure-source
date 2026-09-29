@@ -1,3 +1,3 @@
 name: derek-jones/measurement-data
 dependencies:
-  codeql/python-all: '*'
+  codeql/java-all: '*'
